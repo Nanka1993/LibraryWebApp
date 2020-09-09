@@ -1,0 +1,32 @@
+[
+  {
+    "Authors": "Калинин П.В.",
+    "Institution": "ЮРГПУ(НПИ) им. М.И. Платова",
+    "AcademicAdviser": "д-р техн. наук, проф. Кабельков А.Н.",
+    "ScientificSpecialtiy": "05.02.05 Роботы, мехатроника и робототехнические системы",
+    "Udk": null,
+    "Type": 0,
+    "CountryName": "Россия",
+    "IsOriginal": true,
+    "PublishingOfficeName": "ЮРГПУ(НПИ) им. М.И. Платова",
+    "CityName": "Новочеркасск",
+    "Year": 2010,
+    "PageAmount": 140,
+    "Name": "Математическое моделирование мехатронного комплекса бурильной установки"
+  },
+  {
+    "Authors": "Остроумов Б.В.",
+    "Institution": "ЗАО \"ЦНИИПСК им. Мельникова\"",
+    "AcademicAdviser": "",
+    "ScientificSpecialtiy": "05.23.01 Строительные конструкции, здания и сооружения",
+    "Udk": null,
+    "Type": 1,
+    "CountryName": "Россия",
+    "IsOriginal": true,
+    "PublishingOfficeName": "ЗАО \"ЦНИИПСК им. Мельникова\"",
+    "CityName": "Москва",
+    "Year": 2003,
+    "PageAmount": 155,
+    "Name": "Исследование, разработка и внедркние высотных сооружений с гасителями колебаний"
+  }
+]
