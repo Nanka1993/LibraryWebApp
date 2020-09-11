@@ -1,0 +1,63 @@
+[
+    {
+        "Number": 1,
+        "Issn": "2305-5502",
+        "RubricatorName": "Строительство и архитектура",
+        "IsIncludedInWebOfScience": false,
+        "IsIncludedVak": false,
+        "Type": 2,
+        "CountryName": "Россия",
+        "IsOriginal": true,
+        "PublishingOfficeName": "МИСИ-МГСУ",
+        "CityName": "Москва",
+        "Year": 2020,
+        "PageAmount": 250,
+        "Name": "Строительство: наука и образование"
+    },
+    {
+        "Number": 4,
+        "Issn": "1992-2124",
+        "RubricatorName": "Строительство и архитектура",
+        "IsIncludedInWebOfScience": false,
+        "IsIncludedVak": false,
+        "Type": 2,
+        "CountryName": "Россия",
+        "IsOriginal": true,
+        "PublishingOfficeName": "ООО ПО \"Периодика\"",
+        "CityName": "Москва",
+        "Year": 2020,
+        "PageAmount": 200,
+        "Name": "Высотные сооружения"
+    },
+    {
+        "Number": 1,
+        "Issn": "1992-2124",
+        "RubricatorName": "Строительство и архитектура",
+        "IsIncludedInWebOfScience": false,
+        "IsIncludedVak": false,
+        "Type": 2,
+        "CountryName": "Россия",
+        "IsOriginal": true,
+        "PublishingOfficeName": "ООО ПО \"Периодика\"",
+        "CityName": "Москва",
+        "Year": 2020,
+        "PageAmount": 198,
+        "Name": "Высотные сооружения"
+    },
+    {
+        "Number": 2,
+        "Issn": "2074-2932",
+        "RubricatorName": "Архитектура",
+        "IsIncludedInWebOfScience": true,
+        "IsIncludedVak": true,
+        "Type": 2,
+        "CountryName": "Россия",
+        "IsOriginal": true,
+        "PublishingOfficeName": "ФГБУ \"ЦНИИП Минстроя России\" УралНИИпроект",
+        "CityName": "Екатеринбург",
+        "Year": 2014,
+        "PageAmount": 198,
+        "Name": "АКАДЕМИЧЕСКИЙ ВЕСТНИК УРАЛНИИПРОЕКТ РААСН"
+    }
+]
+    

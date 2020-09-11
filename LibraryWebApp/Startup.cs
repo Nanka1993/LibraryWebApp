@@ -1,6 +1,7 @@
 using LibraryWebApp.Database;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
+using LibraryWebApp.Services.Seeding;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace LibraryWebApp
             var conString = Configuration.GetConnectionString("LibraryDatabase");
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(conString));
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
+            services.AddHostedService<ContextDataSeeder>();
+            services.AddSingleton<IDataProvider, JsonDataProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

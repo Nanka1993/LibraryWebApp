@@ -1,44 +1,56 @@
 ﻿using LibraryWebApp.Database;
 using LibraryWebApp.Models.Domain;
+using LibraryWebApp.Services.Seeding;
+using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace LibraryWebApp.Services
 {
-    public class ContextDataSeeder
+    public class ContextDataSeeder : BackgroundService
     {
             private readonly LibraryContext _context;
+            private readonly IDataProvider _provider;
 
             /// <summary>
             /// Конструктор по умолчанию
             /// </summary>
             /// <param name="context">Контекст БД</param>
-            public ContextDataSeeder(LibraryContext context)
+            public ContextDataSeeder(LibraryContext context, IDataProvider provider)
             {
                 _context = context;
+                _provider = provider;
             }
 
             /// <inheritdoc/>>
             public string Seed()
             {
-                AddJsonDataToContext<Dissertation>("Dissertations.json");
-                AddJsonDataToContext<Magazine>("Magazines.json");
-                AddJsonDataToContext<Article>("Articles.json");
-                AddJsonDataToContext<SynopsisOfThesis>("SynopsisOfThesis.json");
-                AddJsonDataToContext<Book>("Books.json");
+                AddJsonDataToContext<Dissertation>();
+                AddJsonDataToContext<Magazine>();
+                AddJsonDataToContext<Article>();
+                AddJsonDataToContext<SynopsisOfThesis>();
+                AddJsonDataToContext<Book>();
 
                 _context.SaveChanges();
 
                 return "Данные успешно сохранены";
             }
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            Seed();
+            return Task.CompletedTask;
+        }
 
-            private void AddJsonDataToContext<T>(string fileName)
+        private void AddJsonDataToContext<T>()
                 where T : class
             {
                 var enumerable = _context.Set<T>()
                     .AsEnumerable();
-                var jsonReader = new JsonDataReader();
-                var freshData = jsonReader.GetJsonData<T>(fileName)
+                var freshData = _provider.GetData<T>()
                     .Where(x => !PublicationExists(enumerable, x))
                     .ToArray();
 
@@ -66,5 +78,7 @@ namespace LibraryWebApp.Services
 
                 return entities.FirstOrDefault(x => x.Equals(entity)) != null;
             }
-        }
+
+
+    }
 }
