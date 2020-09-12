@@ -1,10 +1,8 @@
 ﻿using LibraryWebApp.Models.Domain;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
-namespace E_LibraryTestsWebApp.ModelsTests
+namespace ELibraryTests.ModelsTests
 {
     public class SynopsisOfThesisTests
     {

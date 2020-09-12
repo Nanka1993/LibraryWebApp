@@ -1,4 +1,4 @@
-﻿using E_LibraryTestsWebApp.InstanciatedTestData;
+﻿using ELibraryTests.InstanciatedTestData;
 using LibraryWebApp.Dto;
 using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Xunit;
 
-namespace E_LibraryTestsWebApp.ServicesTests.FilteringServicesTests
+namespace ELibraryTests.ServicesTests.FilteringServicesTests
 {
     public class BooksFilteringServiceTests
     {
@@ -74,8 +74,8 @@ namespace E_LibraryTestsWebApp.ServicesTests.FilteringServicesTests
             var expectedId = 3;
             var filter = new BookFilter
             {
-                PageRange = new IntRange
-                {
+                PageRange = new IntRange 
+                { 
                     Gte = 400,
                     Lte = 480
                 }
@@ -202,7 +202,7 @@ namespace E_LibraryTestsWebApp.ServicesTests.FilteringServicesTests
             var actual = _service.GetPublications(filter).FirstOrDefault();
 
             //assert
-            Assert.Equal(expectedId, actual?.Id);
+            Assert.Equal(expectedId,actual?.Id);
         }
 
         [Fact]
@@ -264,7 +264,7 @@ namespace E_LibraryTestsWebApp.ServicesTests.FilteringServicesTests
 
             var filter = new BookFilter
             {
-                PageRange = new IntRange
+                PageRange = new IntRange 
                 {
                     Gte = null,
                     Lte = null

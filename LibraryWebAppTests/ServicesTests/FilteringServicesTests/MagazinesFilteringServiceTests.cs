@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace E_LibraryTestsWebApp.ServicesTests.FilteringServicesTests
+namespace ELibraryTests.ServicesTests.FilteringServicesTests
 {
     public class MagazinesFilteringServiceTests
     {

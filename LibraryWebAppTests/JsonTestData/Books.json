@@ -1,0 +1,45 @@
+
+    [
+        {
+            "Id" :  1,
+            "Authors": "Письменный Д. Т.",
+            "Bbk": "21.1я73-4",
+            "Udk": "517(075.8)",
+            "Isbn": "978-5-8112-3681-7",
+            "CountryName": "Россия",
+            "IsOriginal": true,
+            "PublishingOfficeName": "АЙРИС-пресс",
+            "CityName": "Москва",
+            "Year": 2009,
+            "PageAmount": 220,
+            "Name": "Сборник задач по высшей математике. 1 курс"
+        },
+        {
+            "Id": 2,
+            "Authors": "Светлицкий В.А.",
+            "Editors": "д-р техн. наук, проф. С. И. Богомолов",
+            "Bbk": "30.12",
+            "Udk": "531.8",
+            "CountryName": "Россия",
+            "IsOriginal": true,
+            "PublishingOfficeName": "Высшая школа",
+            "CityName": "Москва",
+            "Year": 1987,
+            "PageAmount": 500,
+            "Name": "Механика стержней: Учеб. для вузов. В 2-х ч. Ч. 1. Статика"
+        },
+        {
+            "Id": 3,
+            "Authors": "Письменный Д. Т.",
+            "Bbk": "21.1я73-4",
+            "Udk": "517(075.8)",
+            "Isbn": "978-5-8112-3481-3",
+            "CountryName": "Россия",
+            "IsOriginal": false,
+            "PublishingOfficeName": "АЙРИС-пресс",
+            "CityName": "Москва",
+            "Year": 2009,
+            "PageAmount": 450,
+            "Name": "Сборник задач по высшей математике. 2 курс"
+        }
+    ]

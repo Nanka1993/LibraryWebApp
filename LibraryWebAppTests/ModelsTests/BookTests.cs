@@ -1,13 +1,12 @@
 ﻿using LibraryWebApp.Models.Domain;
 using System;
 using Xunit;
-
-namespace E_LibraryTestsWebApp.ModelsTests
+namespace ELibraryTests.ModelsTests
 {
-    public class MagazineTests
+    public class BookTests
     {
         [Theory]
-        [InlineData(1, 2, true)]
+        [InlineData(1,2,true)]
         [InlineData(1, 3, false)]
         [InlineData(2, 3, false)]
         [InlineData(1, null, false)]
@@ -26,35 +25,28 @@ namespace E_LibraryTestsWebApp.ModelsTests
             Assert.Equal(expected, actual);
         }
 
-        private static Magazine GetTestBook(int? index)
+        private static Book GetTestBook(int? index)
         {
             return index switch
             {
                 null => null,
-                1 => new Magazine
+                1 => new Book
                 {
-                    Name = "Строительство: наука и образование",
-                    Issn = "2305-5502",
-                    Number = 1,
-                    Year = 2020,
+                    Name = "Сборник задач по высшей математике. 1 курс",
+                    Authors = "Письменный Д. Т.",
                 },
-                2 => new Magazine
+                2 => new Book
                 {
-                    Name = "Строительство: наука и образование",
-                    Issn = "2305-5502",
-                    Number = 1,
-                    Year = 2020,
+                    Name = "Сборник задач по высшей математике. 1 курс",
+                    Authors = "Письменный Д. Т.",
                 },
-                3 => new Magazine
+                3 => new Book
                 {
-                    Name = "Высотные сооружения",
-                    Issn = "1992-2124",
-                    Number = 4,
-                    Year = 2016,
+                    Name = "Механика стержней: Учеб. для вузов. В 2-х ч. Ч. 1. Статика",
+                    Authors = "Светлицкий В.А.",
                 },
                 _ => throw new IndexOutOfRangeException(index.ToString())
             };
         }
-
     }
 }

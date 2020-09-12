@@ -1,7 +1,7 @@
 ﻿using LibraryWebApp.Models.Domain;
 using System.Collections.Generic;
 
-namespace E_LibraryTestsWebApp.InstanciatedTestData
+namespace ELibraryTests.InstanciatedTestData
 {
     public static class MagazineData
     {

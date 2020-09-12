@@ -2,9 +2,9 @@
 using System;
 using Xunit;
 
-namespace E_LibraryTestsWebApp.ModelsTests
+namespace ELibraryTests.ModelsTests
 {
-    public class ArticleTests
+    public class MagazineTests
     {
         [Theory]
         [InlineData(1, 2, true)]
@@ -26,28 +26,35 @@ namespace E_LibraryTestsWebApp.ModelsTests
             Assert.Equal(expected, actual);
         }
 
-        private static Article GetTestBook(int? index)
+        private static Magazine GetTestBook(int? index)
         {
             return index switch
             {
                 null => null,
-                1 => new Article
+                1 => new Magazine
                 {
-                    Name = "Оценка сооружений на возникновение галлопирвания",
-                    Authors = "Рутман Ю.Л., Мелешко В.А.",
+                    Name = "Строительство: наука и образование",
+                    Issn = "2305-5502",
+                    Number = 1,
+                    Year = 2020,
                 },
-                2 => new Article
+                2 => new Magazine
                 {
-                    Name = "Оценка сооружений на возникновение галлопирвания",
-                    Authors = "Рутман Ю.Л., Мелешко В.А.",
+                    Name = "Строительство: наука и образование",
+                    Issn = "2305-5502",
+                    Number = 1,
+                    Year = 2020,
                 },
-                3 => new Article
+                3 => new Magazine
                 {
-                    Name = "Применение математического моделирования в архитектурном проектировании высотных зданий",
-                    Authors = "ЖИЛИН С.С., МИСЮРА Н.Е., МИТЮШОВ Е.А",
+                    Name = "Высотные сооружения",
+                    Issn = "1992-2124",
+                    Number = 4,
+                    Year = 2016,
                 },
                 _ => throw new IndexOutOfRangeException(index.ToString())
             };
         }
+
     }
 }

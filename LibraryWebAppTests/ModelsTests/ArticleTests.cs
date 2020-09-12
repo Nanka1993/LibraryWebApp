@@ -2,9 +2,9 @@
 using System;
 using Xunit;
 
-namespace E_LibraryTestsWebApp.ModelsTests
+namespace ELibraryTests.ModelsTests
 {
-    public class BookTests
+    public class ArticleTests
     {
         [Theory]
         [InlineData(1, 2, true)]
@@ -26,25 +26,25 @@ namespace E_LibraryTestsWebApp.ModelsTests
             Assert.Equal(expected, actual);
         }
 
-        private static Book GetTestBook(int? index)
+        private static Article GetTestBook(int? index)
         {
             return index switch
             {
                 null => null,
-                1 => new Book
+                1 => new Article
                 {
-                    Name = "Сборник задач по высшей математике. 1 курс",
-                    Authors = "Письменный Д. Т.",
+                    Name = "Оценка сооружений на возникновение галлопирвания",
+                    Authors = "Рутман Ю.Л., Мелешко В.А.",
                 },
-                2 => new Book
+                2 => new Article
                 {
-                    Name = "Сборник задач по высшей математике. 1 курс",
-                    Authors = "Письменный Д. Т.",
+                    Name = "Оценка сооружений на возникновение галлопирвания",
+                    Authors = "Рутман Ю.Л., Мелешко В.А.",
                 },
-                3 => new Book
+                3 => new Article
                 {
-                    Name = "Механика стержней: Учеб. для вузов. В 2-х ч. Ч. 1. Статика",
-                    Authors = "Светлицкий В.А.",
+                    Name = "Применение математического моделирования в архитектурном проектировании высотных зданий",
+                    Authors = "ЖИЛИН С.С., МИСЮРА Н.Е., МИТЮШОВ Е.А",
                 },
                 _ => throw new IndexOutOfRangeException(index.ToString())
             };
