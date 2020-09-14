@@ -13,8 +13,8 @@
         "PageFrom": 39,
         "PageTo": 43,
         "Udk": "72.013",
-        "Magazine" : {
-            "Id" : 38 
-        } 
+        //"Magazine" : {
+        //    "Id" : 38 
+        //} 
     }
 ]
