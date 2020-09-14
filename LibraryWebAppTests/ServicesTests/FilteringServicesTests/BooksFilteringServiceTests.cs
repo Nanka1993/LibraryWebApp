@@ -185,7 +185,7 @@ namespace ELibraryTests.ServicesTests.FilteringServicesTests
         }
 
         [Fact]
-        public void GetPublications_LteEqualGte_ThrowsValidationException()
+        public void GetPublications_LteEqualGte_OneItem()
         {
             //arrange
             var expectedId = 1;
@@ -203,6 +203,25 @@ namespace ELibraryTests.ServicesTests.FilteringServicesTests
 
             //assert
             Assert.Equal(expectedId,actual?.Id);
+        }
+
+        [Fact]
+        public void GetPublications_Lte0lGte0_ThrowsValidationException()
+        {
+            //arrange
+            var filter = new BookFilter
+            {
+                PageRange = new IntRange
+                {
+                    Gte = 0,
+                    Lte = 0
+                }
+            };
+
+            //act
+
+            //assert
+            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]
