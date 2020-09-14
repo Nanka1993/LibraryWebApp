@@ -3,7 +3,6 @@ using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services.Seeding;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -29,15 +28,15 @@ namespace LibraryWebApp.Services
             /// <inheritdoc/>>
             public string Seed()
             {
-                //AddJsonDataToContext<Dissertation>();
-                //AddJsonDataToContext<Magazine>();
-                //AddJsonDataToContext<Article>();
-                //AddJsonDataToContext<SynopsisOfThesis>();
-                //AddJsonDataToContext<Book>();
+            AddJsonDataToContext<Dissertation>();
+            AddJsonDataToContext<Magazine>();
+            AddJsonDataToContext<Article>();
+            AddJsonDataToContext<SynopsisOfThesis>();
+            AddJsonDataToContext<Book>();
 
-                //_context.SaveChanges();
+            _context.SaveChanges();
 
-                return "Данные успешно сохранены";
+            return "Данные успешно сохранены";
             }
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
