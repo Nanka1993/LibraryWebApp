@@ -1,6 +1,8 @@
 using LibraryWebApp.Database;
+using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
+using LibraryWebApp.Services.FilteringServices;
 using LibraryWebApp.Services.Seeding;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +29,10 @@ namespace LibraryWebApp
             var conString = Configuration.GetConnectionString("LibraryDatabase");
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(conString));
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
-            services.AddHostedService<ContextDataSeeder>();
+            services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
+               services.AddHostedService<ContextDataSeeder>();
             services.AddSingleton<IDataProvider, JsonDataProvider>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +44,13 @@ namespace LibraryWebApp
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "LibraryWebApp API V1");
+            });
 
             app.UseRouting();
 

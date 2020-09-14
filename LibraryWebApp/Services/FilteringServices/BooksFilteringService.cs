@@ -41,7 +41,7 @@ namespace LibraryWebApp.Services.FilteringServices
                     .AsEnumerable();
             }
 
-            if (filter.PageRange.Gte.HasValue && filter.PageRange.Gte.HasValue)
+            if (filter.PageRange.Gte.HasValue && filter.PageRange.Lte.HasValue)
             {
                 query = query.Where(x => x.PageAmount >= filter.PageRange.Gte
                                          && x.PageAmount <= filter.PageRange.Lte);
@@ -84,8 +84,8 @@ namespace LibraryWebApp.Services.FilteringServices
             }
 
             var rangeIsOk = (filter.PageRange.Gte ?? 0) <= (filter.PageRange.Lte ?? int.MaxValue);
-            var gteIsOk = filter.PageRange.Gte.HasValue && filter.PageRange.Gte >= 0;
-            var lteIsOk = filter.PageRange.Lte.HasValue && filter.PageRange.Lte > 0;
+            var gteIsOk = (filter.PageRange.Gte.HasValue && filter.PageRange.Gte >= 0) || !filter.PageRange.Gte.HasValue;
+            var lteIsOk = (filter.PageRange.Lte.HasValue && filter.PageRange.Lte > 0) || !filter.PageRange.Lte.HasValue;
 
             if (!rangeIsOk || !gteIsOk || !lteIsOk)
             {

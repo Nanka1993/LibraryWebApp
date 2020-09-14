@@ -29,13 +29,13 @@ namespace LibraryWebApp.Services
             /// <inheritdoc/>>
             public string Seed()
             {
-                AddJsonDataToContext<Dissertation>();
-                AddJsonDataToContext<Magazine>();
-                AddJsonDataToContext<Article>();
-                AddJsonDataToContext<SynopsisOfThesis>();
-                AddJsonDataToContext<Book>();
+                //AddJsonDataToContext<Dissertation>();
+                //AddJsonDataToContext<Magazine>();
+                //AddJsonDataToContext<Article>();
+                //AddJsonDataToContext<SynopsisOfThesis>();
+                //AddJsonDataToContext<Book>();
 
-                _context.SaveChanges();
+                //_context.SaveChanges();
 
                 return "Данные успешно сохранены";
             }
@@ -46,13 +46,13 @@ namespace LibraryWebApp.Services
         }
 
         private void AddJsonDataToContext<T>()
-                where T : class
+                where T : IdName
             {
                 var enumerable = _context.Set<T>()
                     .AsEnumerable();
-                var freshData = _provider.GetData<T>()
-                    .Where(x => !PublicationExists(enumerable, x))
-                    .ToArray();
+            var freshData = _provider.GetData<T>()
+                .Where(x => !PublicationExists(enumerable, x))
+                .ToArray();
 
                 if (freshData.Any())
                 {

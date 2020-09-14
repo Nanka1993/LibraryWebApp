@@ -25,17 +25,42 @@ namespace LibraryWebApp.Database
             modelBuilder.Entity<Magazine>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<Magazine>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
             modelBuilder.Entity<Dissertation>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Dissertation>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
 
             modelBuilder.Entity<Book>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<Book>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
             modelBuilder.Entity<SynopsisOfThesis>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<SynopsisOfThesis>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
             modelBuilder.Entity<Article>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Article>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
         }
     }
 }
