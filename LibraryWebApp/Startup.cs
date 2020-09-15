@@ -30,7 +30,7 @@ namespace LibraryWebApp
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(conString));
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
             services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
-               services.AddHostedService<ContextDataSeeder>();
+            services.AddHostedService<ContextDataSeeder>();
             services.AddSingleton<IDataProvider, JsonDataProvider>();
             services.AddSwaggerGen();
         }
