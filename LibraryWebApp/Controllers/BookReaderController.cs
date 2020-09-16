@@ -16,7 +16,9 @@ namespace LibraryWebApp.Controllers
     {
         private readonly IReader<Book> _reader;
 
+
         private readonly IFilteringService<Book, BookFilter> _filteringService;
+
 
         public BookReaderController(IReader<Book> reader, IFilteringService<Book, BookFilter> filteringService)
         {

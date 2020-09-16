@@ -37,11 +37,6 @@ namespace LibraryWebApp.Database
 
             modelBuilder.Entity<Article>()
                 .HasKey(x => x.Id);
-
-            //modelBuilder.Entity<Article>()
-            //    .Property(x => x.Id)
-            //    .ValueGeneratedOnAdd()
-            //    .UseIdentityColumn();
         }
     }
 }

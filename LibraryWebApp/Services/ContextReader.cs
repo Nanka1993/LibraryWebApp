@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace LibraryWebApp.Services
     {
-    public class ContextReader<T> : IReader<T>
+    public class ContextReader<T> : IReader<T>, IWriter<T>
         where T : class
     {
         private readonly LibraryContext _context;
@@ -29,6 +29,11 @@ namespace LibraryWebApp.Services
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public void Create(T entity)
+        {
+            _context.Add(entity);
         }
     }
 }
