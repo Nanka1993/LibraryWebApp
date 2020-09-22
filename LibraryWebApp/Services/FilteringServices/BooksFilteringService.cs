@@ -22,23 +22,28 @@ namespace LibraryWebApp.Services.FilteringServices
         public IEnumerable<Book> GetPublications(BookFilter filter)
         {
             ValidateFilterAndThrow(filter);
+            var query = GetQuery(filter);
+            return query.AsEnumerable();
+        }
+
+        public IQueryable<Book> GetQuery(BookFilter filter)
+        {
             var query = _reader.GetQuery();
 
             if (filter == null)
             {
-                return query.AsEnumerable();
+                return query;
             }
 
             if (filter.PageRange == null && filter.EqualsToIsOriginal == null)
             {
-                return query.AsEnumerable();
+                return query;
             }
 
             if (filter.PageRange == null && filter.EqualsToIsOriginal != null)
             {
                 return query.Where(x => x.IsOriginal == filter.EqualsToIsOriginal)
-                    .AddPageRangeFilter(filter.PageRange)
-                    .AsEnumerable();
+                    .AddPageRangeFilter(filter.PageRange);
             }
 
             if (filter.PageRange.Gte.HasValue && filter.PageRange.Lte.HasValue)
@@ -59,32 +64,28 @@ namespace LibraryWebApp.Services.FilteringServices
 
             if (filter.EqualsToIsOriginal == null)
             {
-                return query.AsEnumerable();
+                return query;
             }
 
             return query.Where(x => x.IsOriginal == filter.EqualsToIsOriginal)
-                .AddPageRangeFilter(filter.PageRange)
-                .AsEnumerable();
-
+                .AddPageRangeFilter(filter.PageRange);
         }
 
         private static void ValidateFilterAndThrow(BookFilter filter)
         {
-            if (filter == null)
+            if (filter?.PageRange == null)
             {
                 return;
             }
-            if (filter.PageRange == null)
-            {
-                return;
-            }
+
             if (filter.PageRange.Gte == null && filter.PageRange.Lte == null)
             {
                 return;
             }
 
             var rangeIsOk = (filter.PageRange.Gte ?? 0) <= (filter.PageRange.Lte ?? int.MaxValue);
-            var gteIsOk = (filter.PageRange.Gte.HasValue && filter.PageRange.Gte >= 0) || !filter.PageRange.Gte.HasValue;
+            var gteIsOk = (filter.PageRange.Gte.HasValue && filter.PageRange.Gte >= 0) ||
+                          !filter.PageRange.Gte.HasValue;
             var lteIsOk = (filter.PageRange.Lte.HasValue && filter.PageRange.Lte > 0) || !filter.PageRange.Lte.HasValue;
 
             if (!rangeIsOk || !gteIsOk || !lteIsOk)

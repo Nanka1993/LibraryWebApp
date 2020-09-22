@@ -3,7 +3,6 @@ using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services.Seeding;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,6 +18,7 @@ namespace LibraryWebApp.Services
             /// Конструктор по умолчанию
             /// </summary>
             /// <param name="context">Контекст БД</param>
+            /// <param name="provider">Провайдер</param>
             public ContextDataSeeder(LibraryContext context, IDataProvider provider)
             {
                 _context = context;

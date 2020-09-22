@@ -1,5 +1,6 @@
 ﻿using LibraryWebApp.Models.Domain;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibraryWebApp.Services.FilteringServices
 {
@@ -13,6 +14,8 @@ namespace LibraryWebApp.Services.FilteringServices
         /// Возвращает отфильтрованный результат
         /// </summary>
         IEnumerable<TResult> GetPublications(TFilter filter);
+
+        IQueryable<TResult> GetQuery(TFilter filter);
 
     }
 }

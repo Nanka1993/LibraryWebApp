@@ -29,7 +29,10 @@ namespace LibraryWebApp
             var conString = Configuration.GetConnectionString("LibraryDatabase");
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(conString));
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
+
             services.AddScoped<IWriter<Book>, ContextReader<Book>>();
+            services.AddScoped<BookListViewer>();
+
             services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
             services.AddHostedService<ContextDataSeeder>();
             services.AddSingleton<IDataProvider, JsonDataProvider>();

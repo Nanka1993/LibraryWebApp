@@ -53,5 +53,10 @@ namespace LibraryWebApp.Services.FilteringServices
             return query.AddYearRangeFilter(filter.YearRange)
                 .AsEnumerable();
         }
+
+        public IQueryable<Magazine> GetQuery(MagazineFilter filter)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
