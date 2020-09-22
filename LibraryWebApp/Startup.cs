@@ -1,4 +1,5 @@
 using LibraryWebApp.Database;
+using LibraryWebApp.Dto.BookDto;
 using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
@@ -31,7 +32,7 @@ namespace LibraryWebApp
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
 
             services.AddScoped<IWriter<Book>, ContextReader<Book>>();
-            services.AddScoped<BookListViewer>();
+            services.AddScoped<IListViewer<UpdateBookDto, BookFilter>, BookListViewer>();
 
             services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
             services.AddHostedService<ContextDataSeeder>();
@@ -51,19 +52,13 @@ namespace LibraryWebApp
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "LibraryWebApp API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "LibraryWebApp API V1"); });
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

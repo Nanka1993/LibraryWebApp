@@ -30,15 +30,18 @@ namespace LibraryWebApp.Services
             }
 
             var query = _filteringService.GetQuery(filterWithPaginationAndSorting.Filter);
-            query = Sorting(query,filterWithPaginationAndSorting.SortingFields);
+            query = filterWithPaginationAndSorting.SortingFields
+                .Aggregate(query, Sorting);
+
             query = AddPagination(query, filterWithPaginationAndSorting.Pagination);
-            return query.AsEnumerable().Select(x => ToDto(x));
+            return query.AsEnumerable()
+                .Select(x => ToDto(x));
         }
 
         private IQueryable<Book> AddPagination(IQueryable<Book> query, Pagination pagination)
         {
-            return query.Skip(pagination?.Skip ?? CountOnPageLimits.MinSkip)
-                .Take(pagination?.Take ?? CountOnPageLimits.MinTake);
+            return query.Skip(pagination?.Skip ?? CountOnPageLimits.DefaultSkip)
+                .Take(pagination?.Take ?? CountOnPageLimits.DefaultTake);
         }
 
         private static UpdateBookDto ToDto(Book book)

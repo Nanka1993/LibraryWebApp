@@ -1,13 +1,13 @@
-﻿using LibraryWebApp.Dto.Filters;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
 using LibraryWebApp.Services.FilteringServices;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
-namespace ELibraryTests.ServicesTests.FilteringServicesTests
+namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
 {
     public class MagazinesFilteringServiceTests
     {

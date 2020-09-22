@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LibraryWebApp.Dto
+﻿namespace LibraryWebApp.Dto
 {
     public class Pagination
     {

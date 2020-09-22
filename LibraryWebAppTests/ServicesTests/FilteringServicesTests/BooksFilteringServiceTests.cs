@@ -1,16 +1,16 @@
-﻿using ELibraryTests.InstanciatedTestData;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using LibraryWebApp.Dto;
 using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
 using LibraryWebApp.Services.FilteringServices;
+using LibraryWebAppTests.InstanciatedTestData;
 using Moq;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using Xunit;
 
-namespace ELibraryTests.ServicesTests.FilteringServicesTests
+namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
 {
     public class BooksFilteringServiceTests
     {

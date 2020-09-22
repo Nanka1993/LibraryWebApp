@@ -1,8 +1,8 @@
-﻿using LibraryWebApp.Models.Domain;
-using System;
+﻿using System;
+using LibraryWebApp.Models.Domain;
 using Xunit;
 
-namespace ELibraryTests.ModelsTests
+namespace LibraryWebAppTests.ModelsTests
 {
     public class ArticleTests
     {

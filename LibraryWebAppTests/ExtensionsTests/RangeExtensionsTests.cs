@@ -1,12 +1,12 @@
-﻿using ELibraryTests.InstanciatedTestData;
+﻿using System.Linq;
 using LibraryWebApp.Dto;
 using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Extensions;
 using LibraryWebApp.Models.Domain;
-using System.Linq;
+using LibraryWebAppTests.InstanciatedTestData;
 using Xunit;
 
-namespace ELibraryTests.ExtensionsTests
+namespace LibraryWebAppTests.ExtensionsTests
 {
     public class RangeExtensionsTests
     {
