@@ -6,6 +6,7 @@ using LibraryWebApp.Services.FilteringServices;
 using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Dto;
 using System.Collections.Generic;
+using LibraryWebApp.Dto.BookDto;
 
 namespace LibraryWebApp.Controllers
 {
@@ -19,10 +20,14 @@ namespace LibraryWebApp.Controllers
         private readonly IFilteringService<Book, BookFilter> _filteringService;
 
 
-        public BookReaderController(IReader<Book> reader, IFilteringService<Book, BookFilter> filteringService)
+        public readonly IListViewer<BookDto, BookFilter> _listViewer;
+
+        public BookReaderController(IReader<Book> reader, IFilteringService<Book, BookFilter> filteringService,
+            IListViewer<BookDto, BookFilter> listViewer)
         {
             _reader = reader;
             _filteringService = filteringService;
+            _listViewer = listViewer;
         }
 
         [HttpGet("GetFirstBook")]
@@ -49,6 +54,12 @@ namespace LibraryWebApp.Controllers
         public IEnumerable<Book> GetBooksByFilter(BookFilter filter)
         {
             return _filteringService.GetPublications(filter);
+        }
+
+        [HttpPost("GetBooksByFilterSortPaging")]
+        public IEnumerable<BookDto> GetBooksByFilterSortPaging(FilterSortPaging<BookFilter> filter)
+        {
+            return _listViewer.GetItems(filter);
         }
     }
 }
