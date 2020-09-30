@@ -1,4 +1,6 @@
-﻿namespace LibraryWebApp.Dto.Filters
+﻿using System;
+
+namespace LibraryWebApp.Dto.Filters
 {
     /// <summary>
     /// Модель фильтра книг
@@ -15,5 +17,19 @@
         /// </summary>
         public IntRange PageRange { get; set; }
 
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as BookFilter);
+        }
+
+        protected bool Equals(BookFilter other)
+        {
+            return EqualsToIsOriginal == other.EqualsToIsOriginal && Equals(PageRange, other.PageRange);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(EqualsToIsOriginal, PageRange);
+        }
     }
 }

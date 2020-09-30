@@ -1,4 +1,6 @@
-﻿namespace LibraryWebApp.Dto
+﻿using System;
+
+namespace LibraryWebApp.Dto
 {
     /// <summary>
     /// Диапазон
@@ -14,5 +16,20 @@
         /// до включительно
         /// </summary>
         public int? Lte { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as IntRange);
+        }
+
+        protected bool Equals(IntRange other)
+        {
+            return Gte == other.Gte && Lte == other.Lte;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Gte, Lte);
+        }
     }
 }
