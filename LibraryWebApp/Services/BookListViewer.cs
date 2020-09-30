@@ -11,7 +11,7 @@ using LibraryWebApp.Services.FilteringServices;
 
 namespace LibraryWebApp.Services
 {
-    public class BookListViewer : IListViewer<UpdateBookDto, BookFilter>
+    public class BookListViewer : IListViewer<BookDto, BookFilter>
     {
         private readonly IFilteringService<Book, BookFilter> _filteringService;
 
@@ -21,19 +21,24 @@ namespace LibraryWebApp.Services
         }
 
 
-        public IEnumerable<UpdateBookDto> GetItems(
-            FilterWithPaginationAndSorting<BookFilter> filterWithPaginationAndSorting)
+        public IEnumerable<BookDto> GetItems(
+            FilterSortPaging<BookFilter> filterSortPaging)
         {
-            if (filterWithPaginationAndSorting == null)
+            if (filterSortPaging == null)
             {
-                throw new ArgumentNullException(nameof(FilterWithPaginationAndSorting<BookFilter>));
+                throw new ArgumentNullException(nameof(FilterSortPaging<BookFilter>));
             }
 
-            var query = _filteringService.GetQuery(filterWithPaginationAndSorting.Filter);
-            query = filterWithPaginationAndSorting.SortingFields
-                .Aggregate(query, Sorting);
+            var query = _filteringService.GetQuery(filterSortPaging.Filter);
 
-            query = AddPagination(query, filterWithPaginationAndSorting.Pagination);
+            if (filterSortPaging.SortingFields != null)
+            {
+                query = filterSortPaging.SortingFields
+                    .Aggregate(query, Sorting);
+            }
+
+            query = AddPagination(query, filterSortPaging.Pagination);
+
             return query.AsEnumerable()
                 .Select(x => ToDto(x));
         }
@@ -44,9 +49,9 @@ namespace LibraryWebApp.Services
                 .Take(pagination?.Take ?? CountOnPageLimits.DefaultTake);
         }
 
-        private static UpdateBookDto ToDto(Book book)
+        private static BookDto ToDto(Book book)
         {
-            return new UpdateBookDto
+            return new BookDto
             {
                 Name = book.Name,
                 CountryName = book.CountryName,

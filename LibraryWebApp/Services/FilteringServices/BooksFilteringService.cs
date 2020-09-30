@@ -28,6 +28,8 @@ namespace LibraryWebApp.Services.FilteringServices
 
         public IQueryable<Book> GetQuery(BookFilter filter)
         {
+            ValidateFilterAndThrow(filter);
+
             var query = _reader.GetQuery();
 
             if (filter == null)

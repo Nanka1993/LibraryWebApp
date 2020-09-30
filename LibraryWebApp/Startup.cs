@@ -32,7 +32,7 @@ namespace LibraryWebApp
             services.AddScoped<IReader<Book>, ContextReader<Book>>();
 
             services.AddScoped<IWriter<Book>, ContextReader<Book>>();
-            services.AddScoped<IListViewer<UpdateBookDto, BookFilter>, BookListViewer>();
+            services.AddScoped<IListViewer<BookDto, BookFilter>, BookListViewer>();
 
             services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
             services.AddHostedService<ContextDataSeeder>();

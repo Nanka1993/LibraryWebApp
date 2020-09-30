@@ -39,7 +39,7 @@ namespace LibraryWebApp.Extensions
         private static PropertyInfo GetPropertyInfo(Type objType, string name)
         {
             var properties = objType.GetProperties();
-            var matchedProperty = properties.FirstOrDefault(p => p.Name == name);
+            var matchedProperty = properties.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.InvariantCultureIgnoreCase));
             if (matchedProperty == null)
             {
                 throw new ArgumentException("name");

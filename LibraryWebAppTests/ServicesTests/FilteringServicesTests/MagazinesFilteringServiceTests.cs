@@ -92,7 +92,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             var actual = _service.GetPublications(filter);
 
             //assert
-            Assert.Equal(1, actual.Count());
+            Assert.Single(actual);
         }
 
         private static IEnumerable<Magazine> GetTestData()

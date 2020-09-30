@@ -1,6 +1,6 @@
 ﻿namespace LibraryWebApp.Dto.BookDto
 {
-    public class UpdateBookDto
+    public class BookDto
     {
         public string Editors { get; set; }
         public string Bbk { get; set; }

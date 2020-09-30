@@ -2,7 +2,7 @@
 
 namespace LibraryWebApp.Dto
 {
-    public class FilterWithPaginationAndSorting<T>
+    public class FilterSortPaging<T>
     {
         public T Filter { get; set; }
 
