@@ -2,34 +2,38 @@
 using LibraryWebApp.Extensions;
 using LibraryWebApp.Models.Domain;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using FluentValidation;
+using LibraryWebApp.Dto;
+using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace LibraryWebApp.Services.FilteringServices
 {
     public class BooksFilteringService : IFilteringService<Book, BookFilter>
     {
+
+        private readonly IValidator<BookFilter>_validator;
+
         private readonly IReader<Book> _reader;
 
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
-        public BooksFilteringService(IReader<Book> reader)
+        public BooksFilteringService(IReader<Book> reader, IValidator<BookFilter> validator)
         {
             _reader = reader;
+            _validator = validator;
         }
 
         public IEnumerable<Book> GetPublications(BookFilter filter)
         {
-            ValidateFilterAndThrow(filter);
+            _validator.ValidateAndThrow(filter);
             var query = GetQuery(filter);
             return query.AsEnumerable();
         }
 
         public IQueryable<Book> GetQuery(BookFilter filter)
         {
-            ValidateFilterAndThrow(filter);
-
             var query = _reader.GetQuery();
 
             if (filter == null)
@@ -72,29 +76,6 @@ namespace LibraryWebApp.Services.FilteringServices
             return query.Where(x => x.IsOriginal == filter.EqualsToIsOriginal)
                 .AddPageRangeFilter(filter.PageRange);
         }
-
-        private static void ValidateFilterAndThrow(BookFilter filter)
-        {
-            if (filter?.PageRange == null)
-            {
-                return;
-            }
-
-            if (filter.PageRange.Gte == null && filter.PageRange.Lte == null)
-            {
-                return;
-            }
-
-            var rangeIsOk = (filter.PageRange.Gte ?? 0) <= (filter.PageRange.Lte ?? int.MaxValue);
-            var gteIsOk = (filter.PageRange.Gte.HasValue && filter.PageRange.Gte >= 0) ||
-                          !filter.PageRange.Gte.HasValue;
-            var lteIsOk = (filter.PageRange.Lte.HasValue && filter.PageRange.Lte > 0) || !filter.PageRange.Lte.HasValue;
-
-            if (!rangeIsOk || !gteIsOk || !lteIsOk)
-            {
-                throw new ValidationException(
-                    $"Некорректно задан диапазон фильтра:{nameof(filter.PageRange.Gte)}={filter.PageRange.Gte},{nameof(filter.PageRange.Lte)}={filter.PageRange.Lte}");
-            }
-        }
+        
     }
 }

@@ -1,10 +1,14 @@
+using FluentValidation;
 using LibraryWebApp.Database;
+using LibraryWebApp.Dto;
 using LibraryWebApp.Dto.BookDto;
 using LibraryWebApp.Dto.Filters;
+using LibraryWebApp.Extensions;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
 using LibraryWebApp.Services.FilteringServices;
 using LibraryWebApp.Services.Seeding;
+using LibraryWebApp.Services.ValidationService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +41,9 @@ namespace LibraryWebApp
             services.AddScoped<IFilteringService<Book, BookFilter>, BooksFilteringService>();
             services.AddHostedService<ContextDataSeeder>();
             services.AddSingleton<IDataProvider, JsonDataProvider>();
+            services.AddScoped<ITimeAcquirer, WcaTimeAcquirer>();
             services.AddSwaggerGen();
+            services.AddValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

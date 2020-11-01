@@ -20,7 +20,7 @@ namespace LibraryWebApp.Controllers
         private readonly IFilteringService<Book, BookFilter> _filteringService;
 
 
-        public readonly IListViewer<BookDto, BookFilter> _listViewer;
+        private readonly IListViewer<BookDto, BookFilter> _listViewer;
 
         public BookReaderController(IReader<Book> reader, IFilteringService<Book, BookFilter> filteringService,
             IListViewer<BookDto, BookFilter> listViewer)

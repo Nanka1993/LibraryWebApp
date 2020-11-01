@@ -41,7 +41,9 @@ namespace LibraryWebApp.Services.FilteringServices
                 query = query.Where(x => x.Year == filter.YearEquals);
             }
 
-            if (!string.IsNullOrWhiteSpace(filter.NameContains))
+            if (string.IsNullOrWhiteSpace(filter.NameContains))
+                return query.AddYearRangeFilter(filter.YearRange)
+                    .AsEnumerable();
             {
                 var lowerTrimmed = filter.NameContains
                     .ToLowerInvariant()

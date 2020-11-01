@@ -4,6 +4,6 @@
     {
         public string Name { get; set; }
 
-        public bool IsDesc { get; set; }
+        public bool? IsDesc { get; set; }
     }
 }
