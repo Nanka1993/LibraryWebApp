@@ -19,9 +19,9 @@ namespace LibraryWebApp.Services.ValidationService
                 .WithMessage("Верхняя граница диапазона должна быть больше 0");
 
             RuleFor(x => x.PageRange)
-                .Must(x => (x.Lte ?? FilterLimits.MaxPageNumber) > (x.Gte ?? FilterLimits.MinPageNumber))
+                .Must(x => (x.Lte ?? FilterLimits.MaxPageNumber) >= (x.Gte ?? FilterLimits.MinPageNumber))
                 .When(x => x.PageRange != null)
-                .WithMessage("Нижняя граница диапазона не должна быть равна или выше верхней");
+                .WithMessage("Нижняя граница диапазона не должна быть выше верхней");
         }
     }
 }

@@ -6,6 +6,7 @@ using LibraryWebApp.Dto.Filters;
 using LibraryWebApp.Models.Domain;
 using LibraryWebApp.Services;
 using LibraryWebApp.Services.FilteringServices;
+using LibraryWebApp.Services.ValidationService;
 using LibraryWebAppTests.InstanciatedTestData;
 using Moq;
 using Xunit;
@@ -24,7 +25,9 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             mock.Setup(a => a.GetQuery())
                 .Returns(books.AsQueryable);
 
-            _service = new BooksFilteringService(mock.Object);
+            var bookValidator = new BookFilterValidator();
+
+            _service = new BooksFilteringService(mock.Object,bookValidator);
         }
 
         [Fact]
@@ -125,7 +128,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             //act
 
             //assert
-            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
+            Assert.Throws<FluentValidation.ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]
@@ -143,7 +146,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             //act
 
             //assert
-            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
+            Assert.Throws<FluentValidation.ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]
@@ -162,7 +165,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             //act
 
             //assert
-            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
+            Assert.Throws<FluentValidation.ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]
@@ -181,7 +184,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             //act
 
             //assert
-            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
+            Assert.Throws<FluentValidation.ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]
@@ -221,7 +224,7 @@ namespace LibraryWebAppTests.ServicesTests.FilteringServicesTests
             //act
 
             //assert
-            Assert.Throws<ValidationException>(() => _service.GetPublications(filter));
+            Assert.Throws<FluentValidation.ValidationException>(() => _service.GetPublications(filter));
         }
 
         [Fact]

@@ -139,12 +139,8 @@ namespace LibraryWebAppTests.ServicesTests
 
             //act
 
-            var actual = _listViewer.GetItems(filter);
-
             //assert
-            Assert.Equal(Books.ElementAt(0).Name, actual.ElementAt(0).Name);
-            Assert.Equal(Books.ElementAt(2).Name, actual.ElementAt(2).Name);
-
+            Assert.Throws<FluentValidation.ValidationException>(() => _listViewer.GetItems(filter));
         }
 
         [Fact]
@@ -273,7 +269,6 @@ namespace LibraryWebAppTests.ServicesTests
 
             //assert
             Assert.Single(actual);
-
         }
 
         [Fact]
@@ -305,6 +300,42 @@ namespace LibraryWebAppTests.ServicesTests
 
             //assert
             Assert.Single(actual);
+        }
+
+        [Fact]
+        public void GetItems_FilterNegativeCaseSortIsDescNullNameNullAndPaginationSkipNegative()
+        {
+            //arrange
+            var filter = new FilterSortPaging<BookFilter>
+            {
+                Filter = new BookFilter
+                {
+                    EqualsToIsOriginal = IsOriginal,
+                    PageRange = new IntRange
+                    {
+                        Gte = Gte,
+                        Lte = Lte
+                    }
+                },
+                SortingFields = new List<SortingField>
+                {
+                    new SortingField
+                    {
+                        IsDesc = null,
+                        Name = null
+                    },
+                },
+                Pagination = new Pagination
+                {
+                    Skip = -2,
+                    Take = 2,
+                },
+            };
+
+            //act
+
+            //assert
+            Assert.Throws<FluentValidation.ValidationException>(() => _listViewer.GetItems(filter));
         }
     }
 }

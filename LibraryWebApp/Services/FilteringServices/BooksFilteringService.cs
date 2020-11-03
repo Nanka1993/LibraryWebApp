@@ -12,7 +12,7 @@ namespace LibraryWebApp.Services.FilteringServices
     public class BooksFilteringService : IFilteringService<Book, BookFilter>
     {
 
-        private readonly IValidator<BookFilter>_validator;
+        private readonly IValidator<BookFilter> _validator;
 
         private readonly IReader<Book> _reader;
 
@@ -27,7 +27,6 @@ namespace LibraryWebApp.Services.FilteringServices
 
         public IEnumerable<Book> GetPublications(BookFilter filter)
         {
-            _validator.ValidateAndThrow(filter);
             var query = GetQuery(filter);
             return query.AsEnumerable();
         }
@@ -40,6 +39,7 @@ namespace LibraryWebApp.Services.FilteringServices
             {
                 return query;
             }
+            _validator.ValidateAndThrow(filter);
 
             if (filter.PageRange == null && filter.EqualsToIsOriginal == null)
             {
